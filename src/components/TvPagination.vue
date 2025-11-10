@@ -25,7 +25,7 @@ const props = defineProps({
   },
   inactiveStyle: {
     type: Object,
-    default: () => ({ backgroundColor: '#ffffff' })
+    default: () => ({ backgroundColor: '#ffffff', color: '#000000' })
   }
 })
 
@@ -40,7 +40,7 @@ const activeCustomStyle = computed(() => {
 
 const inactiveCustomStyle = computed(() => {
   const style = props.inactiveStyle || {}
-  return Object.keys(style).length ? style : { backgroundColor: '#ffffff' }
+  return Object.keys(style).length ? style : { backgroundColor: '#ffffff', color: '#000000' }
 })
 
 watch(
