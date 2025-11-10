@@ -1,5 +1,5 @@
 <script setup>
-import { watch } from 'vue'
+import { watch, computed } from 'vue'
 import TvButton from '@todovue/tv-button'
 import { usePagination } from '../composables/usePagination.js'
 
@@ -21,7 +21,11 @@ const props = defineProps({
   buttonProps: { type: Object, default: () => ({}) },
   activeStyle: {
     type: Object,
-    default: () => ({ backgroundColor: '#5b8def', color: '#ffffff' })
+    default: () => ({})
+  },
+  inactiveStyle: {
+    type: Object,
+    default: () => ({ backgroundColor: '#ffffff' })
   }
 })
 
@@ -29,10 +33,15 @@ const emit = defineEmits(['update:modelValue', 'change'])
 
 const { items, totalPages, isFirstPage, isLastPage, goTo, goToFirst, goToLast, goToNext, goToPrev } = usePagination(props, emit)
 
-const getButtonStyle = (isActive = false) => {
-  if (!isActive) return {}
-  return props.activeStyle
-}
+const activeCustomStyle = computed(() => {
+  const style = props.activeStyle || {}
+  return Object.keys(style).length ? style : undefined
+})
+
+const inactiveCustomStyle = computed(() => {
+  const style = props.inactiveStyle || {}
+  return Object.keys(style).length ? style : { backgroundColor: '#ffffff' }
+})
 
 watch(
   () => props.modelValue,
@@ -53,6 +62,7 @@ watch(
           small
           type="icon"
           v-bind="buttonProps"
+          :custom-style="activeCustomStyle"
           :icon="showIcons ? 'arrow-left' : undefined"
           :disabled="disabled || isFirstPage"
           :aria-label="labels.first"
@@ -68,6 +78,7 @@ watch(
           small
           type="icon"
           v-bind="buttonProps"
+          :custom-style="activeCustomStyle"
           :icon="showIcons ? 'arrow-left' : undefined"
           :disabled="disabled || isFirstPage"
           :aria-label="labels.prev"
@@ -84,7 +95,7 @@ watch(
             small
             type="icon"
             v-bind="buttonProps"
-            :custom-style="getButtonStyle(item.isActive)"
+            :custom-style="item.isActive ? activeCustomStyle : inactiveCustomStyle"
             :disabled="disabled"
             :aria-current="item.isActive ? 'page' : undefined"
             :class="{ 'is-active': item.isActive }"
@@ -107,6 +118,7 @@ watch(
           small
           type="icon"
           v-bind="buttonProps"
+          :custom-style="activeCustomStyle"
           :icon="showIcons ? 'arrow-right' : undefined"
           :disabled="disabled || isLastPage"
           :aria-label="labels.next"
@@ -122,6 +134,7 @@ watch(
           small
           type="icon"
           v-bind="buttonProps"
+          :custom-style="activeCustomStyle"
           :icon="showIcons ? 'arrow-right' : undefined"
           :disabled="disabled || isLastPage"
           :aria-label="labels.last"
