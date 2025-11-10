@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 
 export function usePagination(props, emit) {
   const totalPages = computed(() => {
@@ -66,6 +66,17 @@ export function usePagination(props, emit) {
       }
     })
   })
+
+  watch([
+    () => props.modelValue,
+    () => totalPages.value
+  ], ([mv]) => {
+    const normalized = Math.min(Math.max(1, Number(mv) || 1), totalPages.value)
+    if (normalized !== mv) {
+      emit('update:modelValue', normalized)
+      emit('change', normalized)
+    }
+  }, { immediate: true })
   
   const goTo = page => {
     if (typeof page !== 'number' || isNaN(page)) return
