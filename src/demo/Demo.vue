@@ -8,7 +8,6 @@ const TvPagination = defineAsyncComponent(/* webpackChunkName: "TvBreadcrumbs" *
 
 <template>
   <tv-demo
-    hide-background
     :component="TvPagination"
     :variants="demos"
     nameComponent="TvPagination"
