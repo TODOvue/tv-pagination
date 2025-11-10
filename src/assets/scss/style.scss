@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
   list-style: none;
   margin: 0;
@@ -15,10 +16,8 @@
 
 .tv-pagination__item {
   display: inline-flex;
-}
-
-.tv-pagination__button.is-active {
-  outline: 2px solid var(--tv-color-accent, #5b8def);
+  align-items: center;
+  justify-content: center;
 }
 
 .tv-pagination__ellipsis {
@@ -26,6 +25,22 @@
   align-items: center;
   justify-content: center;
   min-width: 2rem;
-  padding: 0 0.25rem;
-  opacity: 0.7;
+  height: 2rem;
+  padding: 0 0.5rem;
+  font-size: 1rem;
+  color: var(--tv-color-text-secondary, #6b7280);
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .tv-pagination__list {
+    gap: 0.25rem;
+  }
+
+  .tv-pagination__ellipsis {
+    min-width: 1.5rem;
+    padding: 0 0.25rem;
+    font-size: 0.875rem;
+  }
 }
