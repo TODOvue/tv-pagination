@@ -5,8 +5,15 @@
 A pagination component for Vue 3, flexible and customizable, with support for smart ranges (sibling pages and boundaries), ellipsis, optional navigation buttons, icons, custom styles, and a slot for labels. Designed for SPAs and SSR environments (e.g. Nuxt 3) without assuming DOM details.
 
 [![npm](https://img.shields.io/npm/v/@todovue/tv-pagination.svg)](https://www.npmjs.com/package/@todovue/tv-pagination)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/27b19432-bb68-471b-a836-2a1b0120a5f6/deploy-status)](https://app.netlify.com/projects/tv-pagination/deploys)
 [![npm downloads](https://img.shields.io/npm/dm/@todovue/tv-pagination.svg)](https://www.npmjs.com/package/@todovue/tv-pagination)
+[![npm total downloads](https://img.shields.io/npm/dt/@todovue/tv-pagination.svg)](https://www.npmjs.com/package/@todovue/tv-pagination)
 ![License](https://img.shields.io/github/license/TODOvue/tv-pagination)
+![Release Date](https://img.shields.io/github/release-date/TODOvue/tv-pagination)
+![Bundle Size](https://img.shields.io/bundlephobia/minzip/@todovue/tv-pagination)
+![Node Version](https://img.shields.io/node/v/@todovue/tv-pagination)
+![Last Commit](https://img.shields.io/github/last-commit/TODOvue/tv-pagination)
+![Stars](https://img.shields.io/github/stars/TODOvue/tv-pagination?style=social)
 
 > Demo: [https://tv-pagination.netlify.app/](https://tv-pagination.netlify.app/)
 
@@ -93,6 +100,7 @@ Local usage inside a component:
 <script setup>
 import { ref } from 'vue'
 import { TvPagination } from '@todovue/tv-pagination'
+import '@todovue/tv-pagination/style.css' // import styles
 
 const page = ref(1)
 </script>
@@ -111,6 +119,7 @@ Create a plugin: `plugins/tv-pagination.client.ts` (or without suffix, it is SSR
 ```ts
 import { defineNuxtPlugin } from '#app'
 import { TvPagination } from '@todovue/tv-pagination'
+import '@todovue/tv-pagination/style.css' // import styles
 
 export default defineNuxtPlugin(nuxtApp => {
   nuxtApp.vueApp.use(TvPagination)
@@ -128,6 +137,7 @@ Optional direct import (without plugin):
 ```vue
 <script setup>
 import { TvPagination } from '@todovue/tv-pagination'
+import '@todovue/tv-pagination/style.css' // import styles
 </script>
 ```
 
@@ -258,9 +268,9 @@ Passing styles / variants to base button via `buttonProps`:
 ## SSR Notes
 
 * No direct DOM access → safe for server rendering.
-* CSS automatically injected via `vite-plugin-css-injected-by-js` when importing the bundle.
+* Styles are served as a separate CSS file (`dist/tv-pagination.css`) that must be explicitly imported (see [Importing Styles](#importing-styles)).
 * `vue` is marked as external in the library build (tree-shake friendly).
-* No need to manually import a separate CSS file.
+* Compatible with Nuxt 3/4 by adding the stylesheet to the `css` array in `nuxt.config.ts`.
 
 ---
 
