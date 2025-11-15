@@ -1,5 +1,9 @@
 import { createApp } from 'vue'
-import './style.css'
+import { TvDemo } from '@todovue/tv-demo'
 import TvPagination from './demo/Demo.vue'
+import '@todovue/tv-demo/style.css'
+import './style.scss'
 
-createApp(TvPagination).mount('#tv-pagination')
+const app = createApp(TvPagination)
+app.component('TvDemo', TvDemo)
+app.mount('#tv-pagination')
