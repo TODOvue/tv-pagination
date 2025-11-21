@@ -1,15 +1,21 @@
-import TvPagination from './components/TvPagination.vue'
+import type { App, Plugin } from 'vue'
+import _TvPagination from './components/TvPagination.vue'
 import './style.scss'
 
-(TvPagination as any).install = (app: any) => {
+const TvPagination = _TvPagination as typeof _TvPagination & Plugin;
+TvPagination.install = (app: App) => {
   app.component('TvPagination', TvPagination)
 };
 
-export const TvPaginationPlugin = {
-  install(app: any) {
-    app.component('TvPagination', TvPagination)
+export { TvPagination }
+
+export const TvPaginationPlugin: Plugin = {
+  install: TvPagination.install
+};
+export default TvPagination;
+
+declare module 'vue' {
+  export interface GlobalComponents {
+    TvPagination: typeof TvPagination;
   }
 }
-
-export { TvPagination }
-export default TvPagination
