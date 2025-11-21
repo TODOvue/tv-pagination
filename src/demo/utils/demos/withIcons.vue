@@ -4,7 +4,7 @@
     :total-items="200"
     :sibling-count="1"
     :boundary-count="1"
-    :show-icons="true"
+    show-icons
   />
 </template>
 
