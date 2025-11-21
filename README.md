@@ -1,4 +1,4 @@
-<p align="center"><img width="150" src="https://firebasestorage.googleapis.com/v0/b/todovue-blog.appspot.com/o/logo.png?alt=media&token=d8eb592f-e4a9-4b02-8aff-62d337745f41" alt="TODOvue logo" /></p>
+<p align="center"><img width="150" src="https://res.cloudinary.com/dcdfhi8qz/image/upload/v1763663056/uqqtkgp1lg3xdplutpga.png" alt="TODOvue logo" /></p>
 
 # TODOvue Pagination (TvPagination)
 
@@ -88,6 +88,8 @@ Global registration (main.js / main.ts):
 import { createApp } from 'vue'
 import App from './App.vue'
 import { TvPagination } from '@todovue/tv-pagination'
+import '@todovue/tv-pagination/style.css' // import styles
+import '@todovue/tv-button/style.css' // import styles
 
 createApp(App)
   .use(TvPagination) // enables <TvPagination /> globally
@@ -101,6 +103,7 @@ Local usage inside a component:
 import { ref } from 'vue'
 import { TvPagination } from '@todovue/tv-pagination'
 import '@todovue/tv-pagination/style.css' // import styles
+import '@todovue/tv-button/style.css' // import styles
 
 const page = ref(1)
 </script>
@@ -113,16 +116,12 @@ const page = ref(1)
 ---
 
 ## Usage in Nuxt 3 / SSR
-
-Create a plugin: `plugins/tv-pagination.client.ts` (or without suffix, it is SSR-safe):
-
 ```ts
-import { defineNuxtPlugin } from '#app'
-import { TvPagination } from '@todovue/tv-pagination'
-import '@todovue/tv-pagination/style.css' // import styles
-
-export default defineNuxtPlugin(nuxtApp => {
-  nuxtApp.vueApp.use(TvPagination)
+// nuxt.config.ts
+export default defineNuxtConfig({
+  modules: [
+    '@todovue/tv-card/nuxt'
+  ]
 })
 ```
 
@@ -131,16 +130,6 @@ Use anywhere:
 ```vue
 <TvPagination v-model="page" :total-items="120" />
 ```
-
-Optional direct import (without plugin):
-
-```vue
-<script setup>
-import { TvPagination } from '@todovue/tv-pagination'
-import '@todovue/tv-pagination/style.css' // import styles
-</script>
-```
-
 ---
 
 ## Component Registration Options
