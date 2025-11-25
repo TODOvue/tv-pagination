@@ -1,3 +1,13 @@
+:root {
+  --tv-pagination-inactive-bg: #0E131F;
+  --tv-pagination-inactive-color: #CBD5E1;
+}
+
+.light-mode {
+  --tv-pagination-inactive-bg: #B9C4DF;
+  --tv-pagination-inactive-color: #1E293B;
+}
+
 .tv-pagination {
   display: block;
   width: 100%;
