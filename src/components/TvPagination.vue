@@ -25,7 +25,10 @@ const props = defineProps({
   },
   inactiveStyle: {
     type: Object,
-    default: () => ({ backgroundColor: '#ffffff', color: '#000000' })
+    default: () => ({
+      backgroundColor: 'var(--tv-pagination-inactive-bg)',
+      color: 'var(--tv-pagination-inactive-color)'
+    })
   }
 })
 
@@ -40,7 +43,10 @@ const activeCustomStyle = computed(() => {
 
 const inactiveCustomStyle = computed(() => {
   const style = props.inactiveStyle || {}
-  return Object.keys(style).length ? style : { backgroundColor: '#ffffff', color: '#000000' }
+  return Object.keys(style).length ? style : {
+    backgroundColor: 'var(--tv-pagination-inactive-bg)',
+    color: 'var(--tv-pagination-inactive-color)'
+  }
 })
 
 watch(

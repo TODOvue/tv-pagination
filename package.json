@@ -30,7 +30,7 @@
       "import": "./dist/tv-pagination.es.js",
       "require": "./dist/tv-pagination.cjs.js"
     },
-    "./style.css": "./dist/tv-card.css",
+    "./style.css": "./dist/tv-pagination.css",
     "./nuxt": "./nuxt.js"
   },
   "main": "dist/tv-pagination.cjs.js",
@@ -57,7 +57,7 @@
     "@todovue/tv-button": "^1.2.2"
   },
   "devDependencies": {
-    "@todovue/tv-demo": "^1.2.1",
+    "@todovue/tv-demo": "^1.2.2",
     "@vitejs/plugin-vue": "^6.0.0",
     "sass": "^1.0.0",
     "vite": "^7.0.0",
