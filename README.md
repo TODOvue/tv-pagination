@@ -5,7 +5,6 @@
 A pagination component for Vue 3, flexible and customizable, with support for smart ranges (sibling pages and boundaries), ellipsis, optional navigation buttons, icons, custom styles, and a slot for labels. Designed for SPAs and SSR environments (e.g. Nuxt 3) without assuming DOM details.
 
 [![npm](https://img.shields.io/npm/v/@todovue/tv-pagination.svg)](https://www.npmjs.com/package/@todovue/tv-pagination)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/27b19432-bb68-471b-a836-2a1b0120a5f6/deploy-status)](https://app.netlify.com/projects/tv-pagination/deploys)
 [![npm downloads](https://img.shields.io/npm/dm/@todovue/tv-pagination.svg)](https://www.npmjs.com/package/@todovue/tv-pagination)
 [![npm total downloads](https://img.shields.io/npm/dt/@todovue/tv-pagination.svg)](https://www.npmjs.com/package/@todovue/tv-pagination)
 ![License](https://img.shields.io/github/license/TODOvue/tv-pagination)
@@ -15,7 +14,7 @@ A pagination component for Vue 3, flexible and customizable, with support for sm
 ![Last Commit](https://img.shields.io/github/last-commit/TODOvue/tv-pagination)
 ![Stars](https://img.shields.io/github/stars/TODOvue/tv-pagination?style=social)
 
-> Demo: [https://tv-pagination.netlify.app/](https://tv-pagination.netlify.app/)
+> Demo: https://ui.todovue.blog/pagination
 
 ---
 

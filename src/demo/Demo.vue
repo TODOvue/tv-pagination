@@ -14,6 +14,6 @@ const TvPagination = defineAsyncComponent(/* webpackChunkName: "tvPagination" */
     npm-install="@todovue/tv-pagination"
     source-link="https://github.com/TODOvue/tv-pagination"
     url-clone="https://github.com/TODOvue/tv-pagination.git"
-    version="1.1.1"
+    version="1.1.2"
   />
 </template>
