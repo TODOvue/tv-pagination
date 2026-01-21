@@ -1,9 +1,13 @@
 import Default from './demos/default.vue?raw';
 import WithIcons from './demos/withIcons.vue?raw';
-import CustomStyle  from './demos/customStyle.vue?raw';
+import CustomStyle from './demos/customStyle.vue?raw';
 import CustomLabel from './demos/customLabel.vue?raw';
 import NoFirstLastButton from './demos/noFirstLastButton.vue?raw';
 import Compact from './demos/compact.vue?raw';
+import Square from './demos/square.vue?raw';
+import Large from './demos/large.vue?raw';
+import Summary from './demos/summary.vue?raw';
+import SummaryText from './demos/summaryText.vue?raw';
 
 import { ref } from 'vue';
 
@@ -83,5 +87,48 @@ export const demos = [
       boundaryCount: 1,
     },
     html: Compact,
+  },
+  {
+    id: 7,
+    title: 'Square Buttons',
+    description: 'Pagination with square buttons.',
+    propsData: {
+      totalItems: 100,
+      square: true,
+    },
+    html: Square,
+  },
+  {
+    id: 8,
+    title: 'Large Size',
+    description: 'Pagination with large buttons.',
+    propsData: {
+      totalItems: 100,
+      size: 'large',
+    },
+    html: Large,
+  },
+  {
+    id: 9,
+    title: 'With Summary',
+    description: 'Pagination showing the summary of items.',
+    propsData: {
+      totalItems: 255,
+      showSummary: true,
+      pageSize: 20,
+    },
+    html: Summary,
+  },
+  {
+    id: 10,
+    title: 'With Summary and Custom Text',
+    description: 'Pagination showing the summary of items with custom text.',
+    propsData: {
+      totalItems: 255,
+      showSummary: true,
+      pageSize: 20,
+      textSummary: 'Mostrando {start}-{end} de {total}',
+    },
+    html: SummaryText,
   }
 ]

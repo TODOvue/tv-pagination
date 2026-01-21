@@ -16,14 +16,12 @@ A pagination component for Vue 3, flexible and customizable, with support for sm
 
 > Demo: https://ui.todovue.blog/pagination
 
----
-
 ## Table of Contents
 
 * [Features](#features)
 * [Installation](#installation)
 * [Quick Start (SPA)](#quick-start-spa)
-* [Usage in Nuxt 3 / SSR](#usage-in-nuxt-3--ssr)
+* [Usage in Nuxt 4 / SSR](#usage-in-nuxt-4--ssr)
 * [Component Registration Options](#component-registration-options)
 * [Props](#props)
 * [Events](#events)
@@ -31,13 +29,10 @@ A pagination component for Vue 3, flexible and customizable, with support for sm
 * [Customization (Styles / Theming)](#customization-styles--theming)
 * [Accessibility](#accessibility)
 * [SSR Notes](#ssr-notes)
-* [Roadmap](#roadmap)
 * [Development](#development)
 * [Contribute](#contribute)
 * [License](#license)
 * [Attributions](#attributions)
-
----
 
 ## Features
 
@@ -52,8 +47,6 @@ A pagination component for Vue 3, flexible and customizable, with support for sm
 * Ready for SSR (no direct access to `window` / `document`).
 * No heavy dependencies (only `vue` as peer + `@todovue/tv-button`).
 * Easy integration in TODOvue design systems.
-
----
 
 ## Installation
 
@@ -76,8 +69,6 @@ pnpm add @todovue/tv-pagination
 ```
 
 > Requires `vue@^3`. `@todovue/tv-button` installs as a dependency.
-
----
 
 ## Quick Start (SPA)
 
@@ -112,9 +103,7 @@ const page = ref(1)
 </template>
 ```
 
----
-
-## Usage in Nuxt 3 / SSR
+## Usage in Nuxt 4 / SSR
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
@@ -129,23 +118,20 @@ Use anywhere:
 ```vue
 <TvPagination v-model="page" :total-items="120" />
 ```
----
 
 ## Component Registration Options
 
 | Approach                                      | When to use                         |
-| --------------------------------------------- | ----------------------------------- |
+|-----------------------------------------------|-------------------------------------|
 | Global `app.use(TvPagination)`                | Frequent use in many views          |
 | Local import `{ TvPagination }`               | Isolated contexts / code-splitting  |
 | Default import `import TvPagination from ...` | Single usage or manual registration |
 | Nuxt plugin                                   | SSR / design consistency            |
 
----
-
 ## Props
 
 | Prop          | Type    | Default                                                    | Required | Description                                                    |
-| ------------- | ------- | ---------------------------------------------------------- | -------- | -------------------------------------------------------------- |
+|---------------|---------|------------------------------------------------------------|----------|----------------------------------------------------------------|
 | modelValue    | Number  | 1                                                          | No       | Current page (v-model). Normalized to valid range.             |
 | totalItems    | Number  | —                                                          | Yes      | Total items being paginated.                                   |
 | pageSize      | Number  | 10                                                         | No       | Page size to calculate `totalPages`.                           |
@@ -160,15 +146,17 @@ Use anywhere:
 | buttonProps   | Object  | `{}`                                                       | No       | Additional props (and styles) passed to each `TvButton`.       |
 | activeStyle   | Object  | `{}`                                                       | No       | Inline styles for active pages (`{ backgroundColor, color }`). |
 | inactiveStyle | Object  | `{ backgroundColor:'#ffffff', color:'#000000' }`           | No       | Inline styles for inactive pages.                              |
+| square        | Boolean | `false`                                                    | No       | Controls if buttons are square.                                |
+| size          | String  | `'small'`                                                  | No       | Button size (`'small'`, `'md'`, `'large'`).                    |
+| showSummary   | Boolean | `false`                                                    | No       | Displays text showing the current range of items.              |
+| textSummary   | String  | `'Showing {from} to {to} of {total} items'`                | No       | Template for summary text (uses `{from}`, `{to}`, `{total}`).  |
 
 > Note: If `activeStyle` is empty, TvButton default styling is used. `inactiveStyle` always provides white/black fallback if omitted.
-
----
 
 ## Events
 
 | Name (kebab)        | Payload  | Description                                                         |
-| ------------------- | -------- | ------------------------------------------------------------------- |
+|---------------------|----------|---------------------------------------------------------------------|
 | `update:modelValue` | `number` | Emits new page number for v-model.                                  |
 | `change`            | `number` | Semantic event triggered when the page changes (only if different). |
 
@@ -184,12 +172,10 @@ function onPage(newPage) {
 }
 ```
 
----
-
 ## Slots
 
 | Slot         | Exposed props      | Description                            |
-| ------------ | ------------------ | -------------------------------------- |
+|--------------|--------------------|----------------------------------------|
 | `page-label` | `{ page, active }` | Customize content of each page button. |
 
 Example:
@@ -204,8 +190,6 @@ Example:
   </template>
 </TvPagination>
 ```
-
----
 
 ## Customization (Styles / Theming)
 
@@ -241,8 +225,6 @@ Passing styles / variants to base button via `buttonProps`:
 
 > All `buttonProps` values are passed to each `TvButton` instance (including variants like `success`, `outlined`, `small`, etc.).
 
----
-
 ## Accessibility
 
 * `nav` container with configurable `aria-label` (`ariaLabel`).
@@ -251,29 +233,12 @@ Passing styles / variants to base button via `buttonProps`:
 * Disabled buttons use `disabled` attribute (inherited from `TvButton`).
 * If icons are used (`showIcons=true`) accessible text is preserved (or empty for icon-only). Ensure `labels.*` describe the action.
 
----
-
 ## SSR Notes
 
 * No direct DOM access → safe for server rendering.
 * Styles are served as a separate CSS file (`dist/tv-pagination.css`) that must be explicitly imported (see [Importing Styles](#importing-styles)).
 * `vue` is marked as external in the library build (tree-shake friendly).
 * Compatible with Nuxt 3/4 by adding the stylesheet to the `css` array in `nuxt.config.ts`.
-
----
-
-## Roadmap
-
-| Item                                      | Status      |
-| ----------------------------------------- | ----------- |
-| Extended accessibility support (keyboard) | Planned     |
-| ARIA live region to announce changes      | Considering |
-| Preconfigured i18n for `labels`           | Considering |
-| Theming API with CSS variables            | Considering |
-| Performance improvements for large lists  | Considering |
-| Jump button (e.g. +10 pages)              | Evaluating  |
-
----
 
 ## Development
 
@@ -297,19 +262,13 @@ Output structure:
 * `dist/tv-pagination.cjs.js`
 * Types: `dist/tv-pagination.d.ts`
 
----
-
 ## Contribute
 
 PRs and issues are welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md).
 
----
-
 ## License
 
 MIT © TODOvue
-
----
 
 ## Attributions
 

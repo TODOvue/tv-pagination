@@ -9,11 +9,12 @@ const TvPagination = defineAsyncComponent(/* webpackChunkName: "tvPagination" */
   <TvDemo
     :component="TvPagination"
     :variants="demos"
+    :manual-emits="['update:modelValue', 'change']"
     hide-background
     component-name="TvPagination"
     npm-install="@todovue/tv-pagination"
     source-link="https://github.com/TODOvue/tv-pagination"
     url-clone="https://github.com/TODOvue/tv-pagination.git"
-    version="1.1.2"
+    version="1.1.3"
   />
 </template>
