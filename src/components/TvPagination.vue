@@ -29,6 +29,23 @@ const props = defineProps({
       backgroundColor: 'var(--tv-pagination-inactive-bg)',
       color: 'var(--tv-pagination-inactive-color)'
     })
+  },
+  square: {
+    type: Boolean,
+    default: false
+  },
+  size: {
+    type: String,
+    default: 'small',
+    validator: (value) => ['small', 'md', 'large'].includes(value)
+  },
+  showSummary: {
+    type: Boolean,
+    default: false
+  },
+  textSummary: {
+    type: String,
+    default: ''
   }
 })
 
@@ -49,6 +66,24 @@ const inactiveCustomStyle = computed(() => {
   }
 })
 
+const summaryText = computed(() => {
+  const start = (props.modelValue - 1) * props.pageSize + 1
+  const end = Math.min(props.modelValue * props.pageSize, props.totalItems)
+  if (props.textSummary) {
+    return props.textSummary
+      .replace('{start}', start)
+      .replace('{end}', end)
+      .replace('{total}', props.totalItems)
+  }
+  return `Showing ${start}-${end} of ${props.totalItems}`
+})
+
+const sizeButton = computed(() => {
+  if (props.size === 'small') return 'sm'
+  if (props.size === 'large') return 'lg'
+  return 'md'
+})
+
 watch(
   () => props.modelValue,
   value => {
@@ -61,11 +96,14 @@ watch(
 
 <template>
   <nav class="tv-pagination" :aria-label="ariaLabel">
+    <div v-if="showSummary" class="tv-pagination__summary">
+      {{ summaryText }}
+    </div>
     <ul class="tv-pagination__list">
       <li v-if="showFirstLast" class="tv-pagination__item">
         <TvButton
-          rounded
-          small
+          :rounded="!square"
+          :size="sizeButton"
           type="icon"
           v-bind="buttonProps"
           :custom-style="activeCustomStyle"
@@ -80,8 +118,8 @@ watch(
 
       <li v-if="showPrevNext" class="tv-pagination__item">
         <TvButton
-          rounded
-          small
+          :rounded="!square"
+          :size="sizeButton"
           type="icon"
           v-bind="buttonProps"
           :custom-style="activeCustomStyle"
@@ -97,8 +135,8 @@ watch(
       <li v-for="item in items" :key="item.key" class="tv-pagination__item">
         <template v-if="item.type === 'page'">
           <TvButton
-            rounded
-            small
+            :rounded="!square"
+            :size="sizeButton"
             type="icon"
             v-bind="buttonProps"
             :custom-style="item.isActive ? activeCustomStyle : inactiveCustomStyle"
@@ -120,8 +158,8 @@ watch(
 
       <li v-if="showPrevNext" class="tv-pagination__item">
         <TvButton
-          rounded
-          small
+          :rounded="!square"
+          :size="sizeButton"
           type="icon"
           v-bind="buttonProps"
           :custom-style="activeCustomStyle"
@@ -136,8 +174,8 @@ watch(
 
       <li v-if="showFirstLast" class="tv-pagination__item">
         <TvButton
-          rounded
-          small
+          :rounded="!square"
+          :size="sizeButton"
           type="icon"
           v-bind="buttonProps"
           :custom-style="activeCustomStyle"

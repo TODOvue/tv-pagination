@@ -9,6 +9,7 @@ const TvPagination = defineAsyncComponent(/* webpackChunkName: "tvPagination" */
   <TvDemo
     :component="TvPagination"
     :variants="demos"
+    :manual-emits="['update:modelValue', 'change']"
     hide-background
     component-name="TvPagination"
     npm-install="@todovue/tv-pagination"

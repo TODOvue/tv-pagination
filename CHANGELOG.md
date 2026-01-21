@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Introduced a summary display feature to provide a condensed overview of component data.
+- Added size customization options, allowing users to adjust component dimensions to fit specific layout requirements.
+
 ### Dependencies
 - Updated `@todovue/tv-demo` to `^1.4.4`.
 - Updated `@todovue/tv-button` to `^1.2.4`.
